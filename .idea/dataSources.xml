@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1033715923">
+    <data-source source="LOCAL" name="Data Source" product="MySQL" version="5.5.32" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.26 ( Revision: ${bzr.revision-id} )" uuid="4060139f-0b97-4f9a-9ecd-3f1cd4a6ecf7">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost/nettyserver</jdbc-url>
+      <user-name>root</user-name>
+      <user-password>dfd8dfc5dfc5dfde</user-password>
+      <schema-pattern>nettyserver.*</schema-pattern>
+      <libraries>
+        <library>
+          <url>file://C:/mysql/mysql-connector-java-gpl-5.1.26/media1/mysql_connector_java_5.1.26_bin.jar</url>
+        </library>
+      </libraries>
+    </data-source>
+  </component>
+</project>
+

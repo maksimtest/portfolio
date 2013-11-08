@@ -136,10 +136,11 @@ public class ServerNettyHandler  extends ChannelInboundHandlerAdapter {
         byte[] c = transformToTable(bd.getReport2(),"");
         byte[] d = transformToTable(bd.getReport3(),"Счетчик запросов на каждый IP");
         byte[] e = transformToTable(bd.getReport4(),"Количество переадрессаций по URL");
-        String s2 = "<h3>Количество открытых соединений в данный момент:"+ServerNetty.getCountConnection()+"</h3>";
-        byte[] f = (s2+"</body></html>").getBytes();
+        byte[] f = ("<h3>Количество открытых соединений в данный момент:"+ServerNetty.getCountConnection()+"</h3>").getBytes();
+        byte[] g = transformToTable(bd.getReport5(),"Статистика последних запросов(16)");
+        byte[] h = ("</body></html>").getBytes();
 
-        return  joinArrays(joinArrays(a,b,c),joinArrays(d,e,f));
+        return  joinArrays(joinArrays(a,b,c),joinArrays(d,e,f),joinArrays(g,h));
     }
     public byte[] transformToTable(ArrayList<ArrayList<String>> mass,String name){
         String s="<br>";
