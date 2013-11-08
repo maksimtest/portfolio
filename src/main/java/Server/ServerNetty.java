@@ -35,13 +35,15 @@ public class ServerNetty {
             EventLoopGroup bossGroup = new NioEventLoopGroup();
             EventLoopGroup workerGroup = new NioEventLoopGroup();
             try {
-                ServerBootstrap b = new ServerBootstrap();
-                b.option(ChannelOption.SO_BACKLOG, 1024);
-                b.group(bossGroup, workerGroup)
+                ServerBootstrap bootstrap = new ServerBootstrap();
+                bootstrap.option(ChannelOption.SO_BACKLOG, 1024);
+                bootstrap.group(bossGroup, workerGroup)
                         .channel(NioServerSocketChannel.class)
-                        .childHandler(new ServerNettyInit());
+                        .childHandler(new ServerNettyInit())
+                        .option(ChannelOption.SO_BACKLOG,128)
+                        .childOption(ChannelOption.SO_KEEPALIVE,true);
 
-                Channel ch = b.bind(port).sync().channel();
+                Channel ch = bootstrap.bind(port).sync().channel();
                 ch.closeFuture().sync();
             } finally {
                 bossGroup.shutdownGracefully();
@@ -59,7 +61,7 @@ public class ServerNetty {
         new ServerNetty(port).run();
     }
     public static int getCountConnection(){
-        System.out.println("getCountConnection");
+        System.out.println("getCountConnection="+countConnection);
         return countConnection;
     }
     public static void addCountConnection(){
@@ -72,3 +74,4 @@ public class ServerNetty {
         if(countConnection<1)countConnection=0;
     }
 }
+
