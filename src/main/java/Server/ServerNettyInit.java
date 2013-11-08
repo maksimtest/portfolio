@@ -13,6 +13,7 @@ import io.netty.handler.codec.http.HttpServerCodec;
  * To change this template use File | Settings | File Templates.
  */
 public class ServerNettyInit extends ChannelInitializer<SocketChannel> {
+    //
     @Override
     public void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline p = ch.pipeline();
