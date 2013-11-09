@@ -58,6 +58,11 @@ public class ServerNettyHandler  extends ChannelInboundHandlerAdapter {
             String ip = ctx.pipeline().channel().remoteAddress().toString().substring(1);
             System.out.println("Uri="+uri+" ip="+ip);
 
+            if(uri.indexOf("/hello1")>=0){
+                //addStat(uri, ip, "");
+                //Thread.sleep(10000L);
+                responseText = "Hello World 111!".getBytes();
+            } else
             if(uri.indexOf("/hello")>=0){
                 addStat(uri, ip, "");
                 Thread.sleep(10000L);
@@ -88,9 +93,14 @@ public class ServerNettyHandler  extends ChannelInboundHandlerAdapter {
                 response.headers().set(CONTENT_TYPE, "text/html;  charset=UTF-8");
                 response.headers().set(CONTENT_LENGTH, response.content().readableBytes());
             }
-
+            System.out.println("!!! keepAlive="+keepAlive);
+            if (!keepAlive) {
+                ctx.write(response).addListener(ChannelFutureListener.CLOSE);
+            } else {
                 response.headers().set(CONNECTION, Values.KEEP_ALIVE);
                 ctx.write(response);
+            }
+
         }
     }
 

@@ -40,8 +40,8 @@ public class ServerNetty {
                 bootstrap.group(bossGroup, workerGroup)
                         .channel(NioServerSocketChannel.class)
                         .childHandler(new ServerNettyInit())
-                        .option(ChannelOption.SO_BACKLOG,128)
-                        .childOption(ChannelOption.SO_KEEPALIVE,true);
+                        .option(ChannelOption.SO_BACKLOG,128);
+                        //.childOption(ChannelOption.SO_KEEPALIVE,true);
 
                 Channel ch = bootstrap.bind(port).sync().channel();
                 ch.closeFuture().sync();
