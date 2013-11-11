@@ -1,10 +1,6 @@
 package Server;
 
-import java.net.InetAddress;
-import java.net.URI;
-
-import dao.ReportJDBCDao;
-import io.netty.buffer.ByteBuf;
+import Dao.ReportJDBCDao;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
@@ -12,8 +8,6 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.DefaultFullHttpResponse;
 import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.HttpRequest;
-import io.netty.handler.traffic.AbstractTrafficShapingHandler;
-import io.netty.handler.traffic.ChannelTrafficShapingHandler;
 import io.netty.handler.traffic.TrafficCounter;
 
 import java.text.SimpleDateFormat;
@@ -29,7 +23,6 @@ import static io.netty.handler.codec.http.HttpVersion.*;
  * User: Maksim_Kuzmenyuk
  * Date: 01.11.13
  * Time: 18:37
- * To change this template use File | Settings | File Templates.
  */
 public class ServerNettyHandler  extends ChannelInboundHandlerAdapter {
 
@@ -43,8 +36,10 @@ public class ServerNettyHandler  extends ChannelInboundHandlerAdapter {
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) {
         //Если соединение корректно, то уменьшить количество соединений
-        if(isCorrectQuery)ServerNetty.delCountConnection();
-        isCorrectQuery=false;
+        if(isCorrectQuery){
+            ServerNetty.delCountConnection();
+            isCorrectQuery=false;
+        }
         ctx.flush();
     }
     @Override
@@ -58,11 +53,6 @@ public class ServerNettyHandler  extends ChannelInboundHandlerAdapter {
             String ip = ctx.pipeline().channel().remoteAddress().toString().substring(1);
             System.out.println("Uri="+uri+" ip="+ip);
 
-            if(uri.indexOf("/hello1")>=0){
-                //addStat(uri, ip, "");
-                //Thread.sleep(10000L);
-                responseText = "Hello World 111!".getBytes();
-            } else
             if(uri.indexOf("/hello")>=0){
                 addStat(uri, ip, "");
                 Thread.sleep(10000L);
@@ -133,11 +123,6 @@ public class ServerNettyHandler  extends ChannelInboundHandlerAdapter {
 
     public byte[] getStatus(){
         ReportJDBCDao bd = new ReportJDBCDao();
-
-        //return String.valueOf(bd.getReport1()).getBytes();
-        //return transformToTable(bd.getReport2());
-        //return transformToTable(bd.getReport3());
-        //return transformToTable(bd.getReport4());
 
         String s1="<html><title>Статус-отчет</title><body><h1>Статистический отчет</h1>";
 

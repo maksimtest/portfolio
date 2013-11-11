@@ -13,7 +13,6 @@ import io.netty.handler.traffic.TrafficCounter;
  * User: Maksim_Kuzmenyuk
  * Date: 01.11.13
  * Time: 18:38
- * To change this template use File | Settings | File Templates.
  */
 public class ServerNettyInit extends ChannelInitializer<SocketChannel> {
     private TrafficCounter trafficCounter;

@@ -11,7 +11,6 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * User: max
  * Date: 01.11.13
  * Time: 11:43
- * To change this template use File | Settings | File Templates.
  */
 
 /**
@@ -61,15 +60,12 @@ public class ServerNetty {
         new ServerNetty(port).run();
     }
     public static int getCountConnection(){
-        System.out.println("getCountConnection="+countConnection);
         return countConnection;
     }
     public static void addCountConnection(){
-        System.out.println("addCountConnection");
         countConnection++;
     }
     public static void delCountConnection(){
-        System.out.println("delCountConnection");
         countConnection--;
         if(countConnection<1)countConnection=0;
     }
