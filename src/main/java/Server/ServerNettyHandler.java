@@ -22,7 +22,6 @@ import static io.netty.handler.codec.http.HttpVersion.*;
  * Created with IntelliJ IDEA.
  * User: Maksim_Kuzmenyuk
  * Date: 01.11.13
- * Time: 18:37
  */
 public class ServerNettyHandler  extends ChannelInboundHandlerAdapter {
 

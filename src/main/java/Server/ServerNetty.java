@@ -17,8 +17,6 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
  * Created with IntelliJ IDEA.
  * User: Maksim_Kuzmenyuk
  * Date: 01.11.13
- * Time: 18:35
- * To change this template use File | Settings | File Templates.
  */
 public class ServerNetty {
     private static int countConnection;
